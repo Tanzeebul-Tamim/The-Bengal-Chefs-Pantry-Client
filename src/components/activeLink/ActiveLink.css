@@ -1,0 +1,18 @@
+.active {
+  color: #403F3F;
+  background-color: #e7e7e7;
+  padding: 12px 50px 12px 50px;
+  border-radius: 5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 20px;
+}
+
+.not-active {
+  color: #9F9F9F;
+  background-color: #e7e7e700;
+  padding: 12px 50px 12px 50px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  font-size: 20px;
+}

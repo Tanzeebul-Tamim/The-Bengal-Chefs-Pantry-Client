@@ -1,0 +1,16 @@
+#logo {
+    height: 70px;
+    width: 70px;
+}
+
+#nav-btn a {
+    margin-left: 8px;
+    margin-right: 8px;
+    text-decoration: none;
+    color: azure;
+}
+
+#brandName {
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
+}
