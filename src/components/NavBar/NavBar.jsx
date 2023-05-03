@@ -3,22 +3,22 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import ActiveLink from "../activeLink/ActiveLink";
 import "./NavBar.css";
 
 const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
-      <Container className="d-flex justify-content-between align-items-center p-2">
+      <Container className="d-flex nav justify-content-between align-items-center p-2">
           <div className="d-flex align-items-center gap-4">
             <img id="logo" src="https://i.ibb.co/r5X5PTG/icon.png" alt="" />
             <Navbar.Brand id="brandName">The Bengal Chefs' Pantry</Navbar.Brand>
           </div>
           <Nav id="nav-btn">
-            <Link to="/home">HOME</Link>
-            <Link to="/features">BLOG</Link>
-            <Link to="/pricing">PROFILE</Link>
-            <Link to="/pricing">ABOUT</Link>
+            <ActiveLink to="/">HOME</ActiveLink>
+            <ActiveLink to="/features">BLOG</ActiveLink>
+            <ActiveLink to="/pricing">PROFILE</ActiveLink>
+            <ActiveLink to="/pricing">ABOUT</ActiveLink>
           </Nav>
           <div className="d-flex align-items-center">
             <div>
