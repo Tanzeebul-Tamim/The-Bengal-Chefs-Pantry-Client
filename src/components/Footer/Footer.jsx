@@ -55,7 +55,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr />
+        <hr className="text-white" />
         <div className="row">
           <div className="col-md-12 text-center">
             <p>

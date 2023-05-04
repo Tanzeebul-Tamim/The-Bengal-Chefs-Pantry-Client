@@ -5,8 +5,8 @@ import './TipsAndTricks.css';
 const TipsAndTricks = ({ tips }) => {
   return (
     <div className="text-white mb-5 container d-flex flex-column align-items-center justify-content-center">
-       <h1 id="tips-title" className="mb-5 mt-5 text-warning">Expert Chef Tips and Tricks</h1> 
-      <Carousel variant="dark" style={{width: "1000px"}}>
+       <h1 id="tips-title" className="my-5 text-warning">Expert Chef Tips and Tricks</h1> 
+      <Carousel className="mb-5" variant="dark" style={{width: "1000px"}}>
         {tips.map((tipsItem) => {
           return (
             <Carousel.Item interval={2000}>
