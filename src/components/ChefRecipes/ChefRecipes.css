@@ -1,0 +1,21 @@
+#recipe-collection-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 60px;
+}
+
+#recipe-card {
+  border-radius: 15px;
+}
+
+#recipe-card img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#recipe-texts, #btn-fav {
+  font-family: 'Changa', sans-serif;
+}
+
+#fav-btn {
+  margin-top: auto;
+}

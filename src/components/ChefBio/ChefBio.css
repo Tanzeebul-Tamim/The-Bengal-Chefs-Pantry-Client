@@ -1,0 +1,14 @@
+#chef-title {
+    font-family: "Dancing Script", cursive;
+    font-size: 60px;
+  }
+  
+  #chef-details-card {
+    border-radius: 20px;
+    font-family: 'Changa', sans-serif;  
+  }
+  
+  #chef-img {
+    border-bottom-left-radius: 20px;  
+    border-top-left-radius: 20px;  
+  }
