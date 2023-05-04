@@ -48,7 +48,9 @@ const ChefSection = ({ chefsSection }) => {
                     <strong>Numbers of Recipes:</strong> <span className="text-danger">{chefCard.recipes}</span></li>
                 </ul>
                 <div id="card-btn" className="card-body">
-                    <Link><Button className="text-white" variant="dark">View Recipes</Button></Link>
+                    <Link key={chefCard.id} to={`/recipes/${chefCard.id}`}>
+                      <Button className="text-white" variant="dark">View Recipes</Button>
+                    </Link>
                 </div>
               </div>
             </div>

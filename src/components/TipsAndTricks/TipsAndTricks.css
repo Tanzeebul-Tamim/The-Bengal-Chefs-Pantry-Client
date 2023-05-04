@@ -6,3 +6,7 @@
 .sub-title {
     font-family: 'Changa', sans-serif;
 }
+
+@media only screen and (max-width: 576px) {
+
+}

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Main from './layout/Main';
 import Home from './components/Home/Home';
+import ChefDetails from './components/ChefDetails/ChefDetails';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,16 @@ const router = createBrowserRouter([
           const tipsAndTricks = await res3.json();
           const healthTips = await res4.json();
           return { bannerDishes, chefsSection, tipsAndTricks, healthTips };
+        }
+      },
+      {
+        path: "/recipes/:id",
+        element: <ChefDetails></ChefDetails>,
+        loader: async ({params}) => {
+          const res = await fetch("http://localhost:5000/chefs");
+          const data = await res.json();
+          const chefDetail = data.find(singleChefDetail => singleChefDetail.id == params.id);
+          return chefDetail;
         }
       }
     ]
