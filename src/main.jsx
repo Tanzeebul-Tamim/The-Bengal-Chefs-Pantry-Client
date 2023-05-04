@@ -9,6 +9,8 @@ import Main from './layout/Main';
 import Home from './components/Home/Home';
 import ChefDetails from './components/ChefDetails/ChefDetails';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
           const chefDetail = data.find(singleChefDetail => singleChefDetail.id == params.id);
           return chefDetail;
         }
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
       }
     ]
   },

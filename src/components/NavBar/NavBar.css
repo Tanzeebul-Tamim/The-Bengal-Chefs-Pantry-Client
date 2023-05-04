@@ -9,6 +9,9 @@
     text-decoration: none;
     color: azure;
 }
+#nav-btn a:hover {
+    color: rgb(242, 255, 65);
+}
 
 #brandName {
     font-family: 'Dancing Script', cursive;

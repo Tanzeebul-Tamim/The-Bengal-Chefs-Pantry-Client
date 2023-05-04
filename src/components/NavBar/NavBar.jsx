@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 import ActiveLink from "../activeLink/ActiveLink";
 import "./NavBar.css";
 
@@ -21,9 +22,9 @@ const NavBar = () => {
             <ActiveLink to="/pricing">ABOUT</ActiveLink>
           </Nav>
           <div className="d-flex align-items-center">
-            <div>
-              <Button className="text-white log" variant="warning">LOGIN</Button>
-            </div>
+            <Link to="/login">
+              <Button className="text-white" variant="warning">LOGIN</Button>
+            </Link>
             <img className="ms-4" id="logo" src="https://i.ibb.co/r5X5PTG/icon.png" alt="" />
           </div>
       </Container>

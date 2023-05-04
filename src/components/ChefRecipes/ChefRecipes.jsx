@@ -18,7 +18,7 @@ const ChefRecipes = ({chefDetail}) => {
                         if(!fav){
                             setFav(true);
                         }
-                        toast.success(`Added ${recipeDetail.name} to your favorites!`, {
+                        toast.warning(`Added ${recipeDetail.name} to your favorites!`, {
                             position: "top-left",
                             autoClose: 5000,
                             hideProgressBar: false,
