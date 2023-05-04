@@ -8,11 +8,13 @@ import {
 import Main from './layout/Main';
 import Home from './components/Home/Home';
 import ChefDetails from './components/ChefDetails/ChefDetails';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

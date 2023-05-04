@@ -12,10 +12,6 @@
   border-top-right-radius: 15px;
 }
 
-#recipe-texts, #btn-fav {
+#recipe-texts, .btn-fav {
   font-family: 'Changa', sans-serif;
-}
-
-#fav-btn {
-  margin-top: auto;
 }
