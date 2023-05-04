@@ -1,18 +1,20 @@
 import React from "react";
 import "./Footer.css";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="row gx-4">
+      <div className="px-5">
+        <div className="row gx-5">
           <div className="col-md-3">
             <h3>About Us</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              bibendum, neque ac fringilla vestibulum, elit elit bibendum elit,
-              vel consequat quam enim nec tortor.
+              We are
+              passionate about bringing you the best Bengali recipes. Our team of dedicated food lovers work tirelessly to
+              curate the most authentic and delicious recipes from our partner
+              chefs. Join us on this culinary journey and discover the
+              beauty and flavor of global cuisine.
             </p>
           </div>
           <div className="col-md-3">
@@ -32,17 +34,25 @@ const Footer = () => {
               <br />
               Phone: 123-456-7890
               <br />
-              Email: info@restaurant.com
+              Email: <a id="email" href="">info@bengal-chefs-pantry.com</a>
             </p>
           </div>
           <div className="col-md-3">
             <h3>Find Us On</h3>
-              <div className="d-flex gap-3 fs-2">
-                <a href=""><FaFacebookF style={{color: "#4267B2"}}></FaFacebookF></a>
-                <a href=""><FaTwitter style={{color: "#1DA1F2"}}></FaTwitter></a>
-                <a href=""><FaInstagram style={{color: "crimson"}}></FaInstagram></a>
-                <a href=""><FaYoutube style={{color: "red"}}></FaYoutube></a>
-              </div>
+            <div className="d-flex gap-3 fs-2">
+              <a href="">
+                <FaFacebookF style={{ color: "#4267B2" }}></FaFacebookF>
+              </a>
+              <a href="">
+                <FaTwitter style={{ color: "#1DA1F2" }}></FaTwitter>
+              </a>
+              <a href="">
+                <FaInstagram style={{ color: "crimson" }}></FaInstagram>
+              </a>
+              <a href="">
+                <FaYoutube style={{ color: "red" }}></FaYoutube>
+              </a>
+            </div>
           </div>
         </div>
         <hr />

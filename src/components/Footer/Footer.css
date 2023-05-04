@@ -20,6 +20,11 @@
     color: #d19e03;
     text-decoration: none;
   }
+
+  #email {
+    text-decoration: underline;
+    color: #bebebe;
+  }
   
   .footer ul li {
     margin-bottom: 10px;

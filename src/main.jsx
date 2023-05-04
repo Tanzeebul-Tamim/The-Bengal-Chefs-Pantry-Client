@@ -16,7 +16,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch ("http://localhost:5000/bannerdishes")
+        loader: async () => {
+          const [res1, res2] = await Promise.all([
+            fetch("http://localhost:5000/bannerdishes"),
+            fetch("http://localhost:5000/chefs")
+          ]);
+          const bannerDishes = await res1.json();
+          const chefsSection = await res2.json();
+          return { bannerDishes, chefsSection };
+        }
       }
     ]
   },

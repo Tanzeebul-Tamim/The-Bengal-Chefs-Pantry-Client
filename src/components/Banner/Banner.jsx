@@ -11,13 +11,13 @@ const Banner = ({ bannerDishes }) => {
       />
       <div className="overlay"></div>
       <div className="text">
-        <h2 className="banner-title mb-3">Authentic Bengali Recipes <br /> from Top Chefs</h2>
+        <h2 className="banner-title text-warning mb-3">Authentic Bengali Recipes <br /> from Top Chefs</h2>
         <p className="sub-title" id="banner-des">
           Discover the rich culinary heritage of Bengal with our collection of
           traditional recipes from the region. Browse recipes from top chefs and
           learn how to recreate your favorite dishes in your own kitchen.
         </p>
-        <h1 className="mt-5 mb-4 banner-title">Our Most Popular Dishes</h1>
+        <h1 className="mt-5 text-warning mb-4 banner-title">Our Most Popular Dishes</h1>
         <div className="row justify-content-center gx-5 gy-4">
           {
             bannerDishes?.map((bannerDish) => (
