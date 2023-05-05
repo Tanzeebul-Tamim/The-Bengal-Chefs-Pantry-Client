@@ -1,0 +1,16 @@
+.health-tips-title {
+    font-family: "Dancing Script", cursive;
+    font-size: 60px;
+  }
+  .accordion-header button {
+    background-color: #141414;
+  }
+  
+  .accordion-body {
+    background-color: #141414;
+    color: #ffc107;
+  }
+  
+  #accord {
+    font-family: 'Changa', sans-serif;
+  }

@@ -26,9 +26,9 @@ const NavBar = () => {
           </div>
           <Nav id="nav-btn">
             <ActiveLink to="/">HOME</ActiveLink>
-            <ActiveLink to="/features">BLOG</ActiveLink>
-            <ActiveLink to="/pricing">PROFILE</ActiveLink>
-            <ActiveLink to="/pricing">ABOUT</ActiveLink>
+            <ActiveLink to="/blogs">BLOG</ActiveLink>
+            <ActiveLink to="/register">REGISTER</ActiveLink>
+            <ActiveLink to="/profile">PROFILE</ActiveLink>
           </Nav>
           {
             loading ? 
