@@ -24,17 +24,19 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: async () => {
-          const [res1, res2, res3, res4] = await Promise.all([
+          const [res1, res2, res3, res4, res5] = await Promise.all([
             fetch("http://localhost:5000/bannerdishes"),
             fetch("http://localhost:5000/chefs"),
             fetch("http://localhost:5000/tips"),
             fetch("http://localhost:5000/healthtips"),
+            fetch("http://localhost:5000/headlines")
           ]);
           const bannerDishes = await res1.json();
           const chefsSection = await res2.json();
           const tipsAndTricks = await res3.json();
           const healthTips = await res4.json();
-          return { bannerDishes, chefsSection, tipsAndTricks, healthTips };
+          const headlines = await res5.json();
+          return { bannerDishes, chefsSection, tipsAndTricks, healthTips, headlines };
         }
       },
       {

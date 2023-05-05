@@ -1,0 +1,15 @@
+#marquee, #button {
+    font-family: 'Changa', sans-serif;
+}
+
+span  {
+    margin-right: 10px;
+}
+
+.headline {
+    background-color: rgb(15, 15, 15);
+}
+
+.text-headline {
+    color: rgba(251, 255, 0, 0.815);
+}

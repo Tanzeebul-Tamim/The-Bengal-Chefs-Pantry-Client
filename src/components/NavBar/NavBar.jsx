@@ -29,7 +29,7 @@ const NavBar = () => {
             <ActiveLink to="/pricing">PROFILE</ActiveLink>
             <ActiveLink to="/pricing">ABOUT</ActiveLink>
           </Nav>
-          <div className="d-flex gap-3 align-items-center">
+          <div id="btn-login" className="d-flex gap-3 align-items-center">
             {
               user ?
               <Link onClick={handleLogOut} to="/">
