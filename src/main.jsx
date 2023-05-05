@@ -12,6 +12,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import AuthProvider from './authProvider/AuthProvider';
+import PrivateRoute from './privateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipes/:id",
-        element: <ChefDetails></ChefDetails>,
+        element: <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
         loader: async ({params}) => {
           const res = await fetch("http://localhost:5000/chefs");
           const data = await res.json();

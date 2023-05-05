@@ -18,7 +18,7 @@ const ChefRecipes = ({chefDetail}) => {
                         if(!fav){
                             setFav(true);
                         }
-                        toast.warning(`Added ${recipeDetail.name} to your favorites!`, {
+                        toast.success(`Added ${recipeDetail.name} to your favorites!`, {
                             position: "top-left",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -26,7 +26,7 @@ const ChefRecipes = ({chefDetail}) => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "colored",
+                            theme: "dark",
                         });
                     };
 

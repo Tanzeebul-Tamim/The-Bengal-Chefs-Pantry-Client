@@ -2,16 +2,20 @@ import React, { useContext, useState } from "react";
 import "./Login.css";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
 
 const Login = () => {
   const { googleSignIn, githubSignIn, signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
   
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then(result => {
         const loggedUser = result.user;
+        navigate(from, { replace: true });
         console.log(loggedUser);
       })
       .catch(error => {
@@ -60,7 +64,7 @@ const Login = () => {
           <hr className="mx-5" />
         </div>
         <Form onSubmit={handleLogin} className="p-4 d-flex gap-2 flex-column align-items-center">
-          <div style={{ position: "relative" }}>
+          <div className="mb-2" style={{ position: "relative" }}>
             <h4 className="fw-bold">Email Address</h4>
             <input
               className="rounded-4 p-4"
@@ -75,7 +79,6 @@ const Login = () => {
               name="email"
             />
           </div>
-          <br />
           <div style={{ position: "relative" }}>
             <h4 className="fw-bold">Password</h4>
             <input
@@ -103,7 +106,14 @@ const Login = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
           </div>
-         <div className="my-3">
+
+          {
+                <p>
+                    <span className="text-danger">error</span>
+                </p>
+          }
+
+         <div className="mb-2">
             <Button style={{width: "558px", height: "55px"}} type="submit" variant="danger" className="fs-5 mt-3 py-2">Submit</Button> 
          </div>    
           <p>

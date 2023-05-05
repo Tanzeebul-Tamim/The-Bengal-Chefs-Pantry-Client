@@ -10,7 +10,11 @@ import "./NavBar.css";
 import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
-  const {user} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then().catch(error => console.error(error));
+  }
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -28,7 +32,7 @@ const NavBar = () => {
           <div className="d-flex gap-3 align-items-center">
             {
               user ?
-              <Link to="/login">
+              <Link onClick={handleLogOut} to="/">
                <Button className="text-white" variant="warning">LOG OUT</Button>
               </Link> :
               <Link to="/login">
@@ -36,11 +40,11 @@ const NavBar = () => {
               </Link> 
             }           
             {
-              user ?
-              <FaUserCircle className="text-secondary fs-1"></FaUserCircle> :
-              <FaUserCircle className="text-warning fs-1"></FaUserCircle>
+              user &&
+              (user.photoURL ?
+              <img title={user?.displayName} style={{height: "40px", width: "40px", borderRadius: "50%"}} src={user?.photoURL} alt="" /> :
+              <FaUserCircle className="text-warning fs-1"></FaUserCircle>)
             }
-            <p className="text-white">{user?.displayName}</p>
           </div>
       </Container>
     </Navbar>

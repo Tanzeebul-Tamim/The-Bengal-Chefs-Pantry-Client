@@ -4,8 +4,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const [error, setError] = useState('');
   const { createUser } = useContext(AuthContext);
 
   const handleRegister = event => {
@@ -16,13 +18,48 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    setError("");
+
+    if (password.length < 6) {
+        setError ("Password must be at least 6 characters long!");
+        return;
+    }
+    else if (!/(?=.*[A-Z])/.test(password)) {
+        setError ("Password must contain at least one uppercase letter");
+        return;
+    }
+    else if (!/(?=.*\d)/.test(password)) {
+        setError ("Password must contain at least one digit");
+        return;
+    }
+    else if (!/(?=.*[!@#$%^&*()_\-+={}[\]\\|:;"'<>,.?/~])/.test(password)) {
+        setError ("Password must contain at least one special character");
+        return;
+    }
+
     createUser(email, password)
         .then(result => {
             const createdUser = result.user;
             console.log(createdUser)
+            toast.success("Registration successful! You can now log in.", {
+                position: "top-center",
+                autoClose: 900,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            setTimeout(function() {
+                window.location.href = "/login";
+              }, 1800);
         })
         .catch(error => {
-            console.error(error)
+            console.error(error);
+            if (error.message.includes("email")) {
+                setError("This email is already in use. Please use a different email.");
+            }
         })
   }
     
@@ -34,13 +71,13 @@ const Register = () => {
 
   return (
     <div className="login-text d-flex justify-content-center container my-5">
-      <div style={{ width: "60%" }} className="bg-warning pb-4 rounded-5">
+      <div style={{ width: "60%" }} className="bg-warning rounded-5">
         <div className="text-center">
           <h1 className="py-3 login-title">Register Your Account</h1>
           <hr className="mx-5" />
         </div>
         <Form onSubmit={handleRegister} className="p-4 d-flex gap-2 flex-column align-items-center">
-          <div style={{ position: "relative" }}>
+          <div className="mb-2" style={{ position: "relative" }}>
             <h4 className="fw-bold">Name</h4>
             <input
               className="rounded-4 p-4"
@@ -55,8 +92,22 @@ const Register = () => {
               name="name"
             />
           </div>
-          <br />
-          <div style={{ position: "relative" }}>
+          <div className="mb-2" style={{ position: "relative" }}>
+            <h4 className="fw-bold">Photo URL</h4>
+            <input
+              className="rounded-4 p-4"
+              style={{
+                height: "65px",
+                width: "558px",
+                border: "none",
+              }}
+              
+              placeholder="Enter the URL of your profile photo"
+              type="text"
+              name="photo"
+            />
+          </div>
+          <div className="mb-2" style={{ position: "relative" }}>
             <h4 className="fw-bold">Email Address</h4>
             <input
               className="rounded-4 p-4"
@@ -71,7 +122,6 @@ const Register = () => {
               name="email"
             />
           </div>
-          <br />
           <div style={{ position: "relative" }}>
             <h4 className="fw-bold">Password</h4>
             <input
@@ -98,24 +148,15 @@ const Register = () => {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
-          </div>
-          <br />
-          <div style={{ position: "relative" }}>
-            <h4 className="fw-bold">Photo URL</h4>
-            <input
-              className="rounded-4 p-4"
-              style={{
-                height: "65px",
-                width: "558px",
-                border: "none",
-              }}
-              
-              placeholder="Enter the URL of your profile photo"
-              type="text"
-              name="photo"
-            />
-          </div>
-          <div className="my-3">
+          </div> 
+
+            {
+                <p>
+                    <span className="text-danger">{error}</span>
+                </p>
+            }
+            
+          <div className="mb-2">
             <Button
               style={{ width: "558px", height: "55px" }}
               type="submit"
