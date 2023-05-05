@@ -14,6 +14,7 @@ import Register from './components/Login/Register';
 import AuthProvider from './authProvider/AuthProvider';
 import PrivateRoute from './privateRoute/PrivateRoute';
 import Blogs from './components/Blogs/Blogs';
+import Profile from './components/Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,11 @@ const router = createBrowserRouter([
         element: <Home></Home>,
         loader: async () => {
           const [res1, res2, res3, res4, res5] = await Promise.all([
-            fetch("http://localhost:5000/bannerdishes"),
-            fetch("http://localhost:5000/chefs"),
-            fetch("http://localhost:5000/tips"),
-            fetch("http://localhost:5000/healthtips"),
-            fetch("http://localhost:5000/headlines")
+            fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/bannerdishes"),
+            fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/chefs"),
+            fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/tips"),
+            fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/healthtips"),
+            fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/headlines")
           ]);
           const bannerDishes = await res1.json();
           const chefsSection = await res2.json();
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
         path: "/recipes/:id",
         element: <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
         loader: async ({params}) => {
-          const res = await fetch("http://localhost:5000/chefs");
+          const res = await fetch("https://chefs-pentry-server-tamim-200091-yahoocom.vercel.app/chefs");
           const data = await res.json();
           const chefDetail = data.find(singleChefDetail => singleChefDetail.id == params.id);
           return chefDetail;
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>
+      },
+      {
+        path: "/profile",
+        element: <Profile></Profile>
       }
     ]
   },

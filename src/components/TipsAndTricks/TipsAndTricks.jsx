@@ -9,7 +9,7 @@ const TipsAndTricks = ({ tips }) => {
       <Carousel className="mb-5" variant="dark" style={{width: "1000px"}}>
         {tips.map((tipsItem) => {
           return (
-            <Carousel.Item interval={2000}>
+            <Carousel.Item key={tipsItem.id} interval={2000}>
               <img
                 style={{height: "600px"}}
                 className="d-block w-100 rounded-3"

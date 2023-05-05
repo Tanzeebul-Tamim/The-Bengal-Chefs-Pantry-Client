@@ -1,30 +1,21 @@
-Chef Website
-This is a website for showcasing the culinary skills and expertise of a professional chef. It features a collection of recipes, cooking tips, and other food-related content. The website is built using React.js, Node.js, and MongoDB.
+# The Bengal Chef's Pantry
+This is a website for showcasing the culinary skills expertise and various recipes of professional chefs of the Bengal. It features a collection of recipes, cooking tips, and other food-related content. The website is built using React.js.
 
-Features
-Browse a collection of recipes organized by category
-Search for recipes using keywords
-Add your own recipes to the website
-Create a personal account to save your favorite recipes and create shopping lists
-View cooking tips and techniques from the chef
-Contact the chef to request catering services or to book a private cooking lesson
-Installation
-Clone the repository: git clone https://github.com/yourusername/chef-website.git
-Install dependencies: npm install
-Start the server: npm start
-Technologies Used
-React.js
-Node.js
-Express.js
-MongoDB
-HTML/CSS
+## Features
+* Browse a collection of recipes from our top rated chefs
+* Create a personal account to save your favorite recipes
+* View cooking tips and techniques from the chef
+* View health and nutrition tips
+* Add your favorite recipes to "Favorite Recipes" to find out later easily.
+* Clone the repository: git clone https://github.com/programming-hero-web-course-4/b7a10-chef-recipe-hunter-client-side-Tanzeebul-Tamim
+* Install dependencies: npm install
+* Start the server: npm run dev
+
+## Technologies Used
+* React.js
+* HTML/CSS
 Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
 
-Fork the repository
-Create a new branch: git checkout -b my-branch
-Make changes and commit them: git commit -m "my changes"
-Push to the branch: git push origin my-branch
-Submit a pull request
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+## Live Site Link
+https://fir-practice-42e37.web.app/

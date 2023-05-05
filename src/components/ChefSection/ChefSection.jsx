@@ -20,7 +20,7 @@ const ChefSection = ({ chefsSection }) => {
                   }
              }; 
           return (
-            <div id="chef-card" className="col-md-3">
+            <div key={chefCard.id} id="chef-card" className="col-md-3">
               <div className="card bg-warning" >
                 <img style={{height: "460px", width: "100%"}} src={chefCard.img} className="card-img-top" alt="..." />
                 <div className="card-body d-flex justify-content-between align-items-center">

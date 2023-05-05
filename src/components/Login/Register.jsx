@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Register = () => {
   const [error, setError] = useState('');
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setLoading } = useContext(AuthContext);
 
   const handleRegister = event => {
     event.preventDefault();
@@ -17,6 +17,7 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
+    const userDetails = {name, photo, email};
 
     setError("");
 
@@ -40,6 +41,7 @@ const Register = () => {
     createUser(email, password)
         .then(result => {
             const createdUser = result.user;
+            localStorage.setItem("userDetails", JSON.stringify(userDetails));
             console.log(createdUser)
             toast.success("Registration successful! You can now log in.", {
                 position: "top-center",
@@ -59,8 +61,9 @@ const Register = () => {
             console.error(error);
             if (error.message.includes("email")) {
                 setError("This email is already in use. Please use a different email.");
+                setLoading(false);
             }
-        })
+        })      
   }
     
   const [showPassword, setShowPassword] = useState(false);

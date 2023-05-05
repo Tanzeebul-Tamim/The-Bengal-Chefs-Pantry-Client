@@ -9,7 +9,7 @@ const HealthTips = ({ healthTips }) => {
       <Accordion id="accord">
         {healthTips.map((healthTipsItem) => {
           return (
-            <Accordion.Item eventKey={healthTipsItem.id}>
+            <Accordion.Item key={healthTipsItem.id} eventKey={healthTipsItem.id}>
               <Accordion.Header>
                 <span className="fw-bold text-warning">{healthTipsItem.title}</span>
               </Accordion.Header>
