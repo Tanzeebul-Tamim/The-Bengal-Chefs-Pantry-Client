@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import './ChefBio.css';
 import { FaThumbsUp } from "react-icons/fa";
+import LazyLoad from 'react-lazyload';
 
 const ChefBio = ({chefDetail}) => {
   return (
@@ -15,12 +16,14 @@ const ChefBio = ({chefDetail}) => {
         className="d-flex bg-warning"
       >
         <div className="col">
+          <LazyLoad>
           <img
             id="chef-img"
             style={{ height: "600px" }}
             variant="top"
             src={chefDetail.img}
           />
+          </LazyLoad>
         </div>
         <div className="flex-grow-1 p-5 d-flex align-items-center col">
           <div>

@@ -8,9 +8,10 @@ import { AuthContext } from "../../authProvider/AuthProvider";
 import ActiveLink from "../activeLink/ActiveLink";
 import "./NavBar.css";
 import { FaUserCircle } from "react-icons/fa";
+import ReactLoading from 'react-loading';
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut().then().catch(error => console.error(error));
@@ -29,7 +30,10 @@ const NavBar = () => {
             <ActiveLink to="/pricing">PROFILE</ActiveLink>
             <ActiveLink to="/pricing">ABOUT</ActiveLink>
           </Nav>
-          <div id="btn-login" className="d-flex gap-3 align-items-center">
+          {
+            loading ? 
+            <ReactLoading type={"cylon"} color={"#ffc107"} height={'5%'} width={'5%'} />:
+            <div id="btn-login" className="d-flex gap-3 align-items-center">
             {
               user ?
               <Link onClick={handleLogOut} to="/">
@@ -45,7 +49,7 @@ const NavBar = () => {
               <img title={user?.displayName} style={{height: "40px", width: "40px", borderRadius: "50%"}} src={user?.photoURL} alt="" /> :
               <FaUserCircle className="text-warning fs-1"></FaUserCircle>)
             }
-          </div>
+          </div>}
       </Container>
     </Navbar>
   );
