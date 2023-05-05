@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
 import ActiveLink from "../activeLink/ActiveLink";
 import "./NavBar.css";
+import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
+  const {user} = useContext(AuthContext);
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container className="d-flex nav justify-content-between align-items-center p-2">
@@ -21,11 +25,22 @@ const NavBar = () => {
             <ActiveLink to="/pricing">PROFILE</ActiveLink>
             <ActiveLink to="/pricing">ABOUT</ActiveLink>
           </Nav>
-          <div className="d-flex align-items-center">
-            <Link to="/login">
-              <Button className="text-white" variant="warning">LOGIN</Button>
-            </Link>
-            <img className="ms-4" id="logo" src="https://i.ibb.co/r5X5PTG/icon.png" alt="" />
+          <div className="d-flex gap-3 align-items-center">
+            {
+              user ?
+              <Link to="/login">
+               <Button className="text-white" variant="warning">LOG OUT</Button>
+              </Link> :
+              <Link to="/login">
+                <Button className="text-white" variant="warning">LOGIN</Button>
+              </Link> 
+            }           
+            {
+              user ?
+              <FaUserCircle className="text-secondary fs-1"></FaUserCircle> :
+              <FaUserCircle className="text-warning fs-1"></FaUserCircle>
+            }
+            <p className="text-white">{user?.displayName}</p>
           </div>
       </Container>
     </Navbar>

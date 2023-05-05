@@ -1,10 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
-import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Button } from "react-bootstrap";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleRegister = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+        .then(result => {
+            const createdUser = result.user;
+            console.log(createdUser)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+  }
+    
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -18,7 +39,7 @@ const Register = () => {
           <h1 className="py-3 login-title">Register Your Account</h1>
           <hr className="mx-5" />
         </div>
-        <div className="p-4 d-flex gap-2 flex-column align-items-center">
+        <Form onSubmit={handleRegister} className="p-4 d-flex gap-2 flex-column align-items-center">
           <div style={{ position: "relative" }}>
             <h4 className="fw-bold">Name</h4>
             <input
@@ -28,7 +49,7 @@ const Register = () => {
                 width: "558px",
                 border: "none",
               }}
-              required
+              
               placeholder="Enter your name"
               type="text"
               name="name"
@@ -88,10 +109,10 @@ const Register = () => {
                 width: "558px",
                 border: "none",
               }}
-              required
+              
               placeholder="Enter the URL of your profile photo"
               type="text"
-              name="name"
+              name="photo"
             />
           </div>
           <div className="my-3">
@@ -110,7 +131,7 @@ const Register = () => {
               <span className="fw-bold text-danger">Login</span>
             </Link>
           </p>
-        </div>
+        </Form>
       </div>
     </div>
   );

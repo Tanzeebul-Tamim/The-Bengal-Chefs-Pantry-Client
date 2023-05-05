@@ -1,10 +1,51 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
 
 const Login = () => {
+  const { googleSignIn, githubSignIn, signIn } = useContext(AuthContext);
+  
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  }
+
+  const handleGitHubSignIn = () => {
+    githubSignIn()
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  }  
+
+  const handleLogin = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+        .then(result => {
+            const createdUser = result.user;
+            console.log(createdUser)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+  }
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -18,7 +59,7 @@ const Login = () => {
           <h1 className="py-3 login-title">Login to Your Account</h1>
           <hr className="mx-5" />
         </div>
-        <div className="p-4 d-flex gap-2 flex-column align-items-center">
+        <Form onSubmit={handleLogin} className="p-4 d-flex gap-2 flex-column align-items-center">
           <div style={{ position: "relative" }}>
             <h4 className="fw-bold">Email Address</h4>
             <input
@@ -72,16 +113,16 @@ const Login = () => {
             </Link>
           </p>
           <div className="d-flex gap-4">
-            <Button className="px-3 py-2">
-              <FaGoogle />
+            <Button onClick={handleGoogleSignIn} className="px-3 py-2">
+              <FaGoogle />{" "}
               Login With Google
             </Button>
-            <Button className="px-3 py-2" variant="dark">
-              <FaGithub />
+            <Button onClick={handleGitHubSignIn} className="px-3 py-2" variant="dark">
+              <FaGithub />{" "}
               Login With Github
             </Button>
           </div>
-        </div>
+        </Form>
       </div>
     </div>
   );
