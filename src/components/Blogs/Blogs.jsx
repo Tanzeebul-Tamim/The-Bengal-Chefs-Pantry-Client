@@ -1,10 +1,13 @@
 import React from "react";
 import "./Blogs.css";
 import Accordion from "react-bootstrap/Accordion";
+import useTitle from "../../hooks/useTitle";
 
 const Blogs = () => {
+  useTitle("Blogs -");
+
   return (
-    <div className="container my-5 d-flex flex-column align-items-center my-5">
+    <div style={{marginBottom: "150px", marginTop: "150px"}} className="container d-flex flex-column align-items-center">
       <h1 className="text-center mb-4 health-tips-title text-warning">
         Blogs
       </h1>

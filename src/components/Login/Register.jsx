@@ -5,10 +5,17 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import { toast } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
+import { getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
+import app from "../../firebase/firebase.config";
+
+const auth = getAuth(app);
 
 const Register = () => {
   const [error, setError] = useState('');
-  const { createUser, setLoading } = useContext(AuthContext);
+  const [success, setSuccess] = useState('');
+  const { createUser, setLoading, logOut } = useContext(AuthContext);
+  useTitle("Register -");
 
   const handleRegister = event => {
     event.preventDefault();
@@ -17,7 +24,14 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    const userDetails = {name, photo, email};
+    const updateUser = () => {
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo
+      })
+      .then(() => {})
+      .catch(error => console.error(error));
+    }
 
     setError("");
 
@@ -41,11 +55,10 @@ const Register = () => {
     createUser(email, password)
         .then(result => {
             const createdUser = result.user;
-            localStorage.setItem("userDetails", JSON.stringify(userDetails));
-            console.log(createdUser)
-            toast.success("Registration successful! You can now log in.", {
+            console.log(createdUser);
+            toast.success(`A verification email has been sent to ${email}. After verifying your email you can log in.`, {
                 position: "top-center",
-                autoClose: 900,
+                autoClose: 3500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -53,14 +66,20 @@ const Register = () => {
                 progress: undefined,
                 theme: "dark",
             });
+            sendEmailVerification(createdUser);
+            logOut();  
+            setSuccess("Registration Successful!");
+            setError("");       
             setTimeout(function() {
                 window.location.href = "/login";
-              }, 1800);
+              }, 4400);
+            updateUser();
         })
         .catch(error => {
             console.error(error);
             if (error.message.includes("email")) {
                 setError("This email is already in use. Please use a different email.");
+                setSuccess("");
                 setLoading(false);
             }
         })      
@@ -89,7 +108,7 @@ const Register = () => {
                 width: "558px",
                 border: "none",
               }}
-              
+              required
               placeholder="Enter your name"
               type="text"
               name="name"
@@ -105,7 +124,7 @@ const Register = () => {
                 border: "none",
               }}
               
-              placeholder="Enter the URL of your profile photo"
+              placeholder="Enter your user photo URL"
               type="text"
               name="photo"
             />
@@ -135,6 +154,7 @@ const Register = () => {
                 border: "none",
               }}
               required
+              autoComplete="off"
               placeholder="Enter your password"
               type={showPassword ? "text" : "password"}
               name="password"
@@ -156,6 +176,7 @@ const Register = () => {
             {
                 <p>
                     <span className="text-danger">{error}</span>
+                    <span className="text-success">{success}</span>
                 </p>
             }
             

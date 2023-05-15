@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import ActiveLink from "../activeLink/ActiveLink";
 import "./NavBar.css";
-import { FaUserCircle } from "react-icons/fa";
 import ReactLoading from 'react-loading';
 
 const NavBar = () => {
@@ -26,9 +25,10 @@ const NavBar = () => {
           </div>
           <Nav id="nav-btn">
             <ActiveLink to="/">HOME</ActiveLink>
-            <ActiveLink to="/blogs">BLOG</ActiveLink>
             <ActiveLink to="/register">REGISTER</ActiveLink>
-            <ActiveLink to="/profile">PROFILE</ActiveLink>
+            <ActiveLink to="/favorites">FAVORITES</ActiveLink>
+            <ActiveLink to="/blogs">BLOG</ActiveLink>
+            <ActiveLink to="/about">ABOUT</ActiveLink>
           </Nav>
           {
             loading ? 
@@ -45,11 +45,22 @@ const NavBar = () => {
             }           
             {
               user &&
-              (user.photoURL ?
-              <img title={user?.displayName} style={{height: "40px", width: "40px", borderRadius: "50%"}} src={user?.photoURL} alt="" /> :
-              <FaUserCircle className="text-warning fs-1"></FaUserCircle>)
+              <Link to="/profile">
+                <img
+                  id="userPhoto"
+                  href={user.photoURL}
+                  src={
+                    user.photoURL ?
+                    user.photoURL :
+                    "https://www.pngitem.com/pimgs/m/24-248235_user-profile-avatar-login-account-fa-user-circle.png"
+                  }
+                  title={user?.displayName}
+                />
+              </Link>
             }
-          </div>}
+            </div>
+          }
+          
       </Container>
     </Navbar>
   );

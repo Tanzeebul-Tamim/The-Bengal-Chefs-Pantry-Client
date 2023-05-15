@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import Banner from '../Banner/Banner';
 import ChefSection from '../ChefSection/ChefSection';
 import HeadLines from '../HeadLines/HeadLines';
@@ -8,7 +9,7 @@ import TipsAndTricks from '../TipsAndTricks/TipsAndTricks';
 
 const Home = () => {
     const data = useLoaderData();
-
+    useTitle("")
     return (
         <div>
             <Banner bannerDishes={data.bannerDishes}></Banner>

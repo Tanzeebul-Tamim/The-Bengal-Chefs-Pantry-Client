@@ -12,7 +12,7 @@ const ErrorPage = () => {
         <h1 style={{fontSize: "90px"}} className="text-warning">{statusText}</h1>
         <p style={{fontSize: "30px"}} className="text-warning">{error?.message}</p>
         <Link to="/">
-          <Button variant="warning">Back To Homepage</Button>
+          <Button className="fs-2 px-4" variant="warning">Back To Homepage</Button>
         </Link>
     </div>
   );

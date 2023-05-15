@@ -8,26 +8,66 @@ import { Link } from 'react-router-dom';
 
 const ChefRecipes = ({chefDetail}) => {
     const recipes = chefDetail.recipe;
+
     return (
         <div className='my-5 row'>
             <h2 className='text-warning text-center my-4' id="recipe-collection-title">Discover the Delicious Creations of Mr. {chefDetail.name}</h2>
             {
                 recipes.map(recipeDetail => {
                     const [fav, setFav] = useState(false);
-                    const handleFav = () => {
-                        if(!fav){
-                            setFav(true);
+                    recipeDetail.chefName = chefDetail.name;
+                    const handleFav = recipe => {
+                        const previousAdded = JSON.parse(localStorage.getItem("favorite"));
+                        let added = [];
+                        const recipeCard = recipe;
+                        if(previousAdded) {
+                            const alreadyAdded = previousAdded.find((card) => {
+                                return(card.id === recipe.id);
+                            });
+                            if (alreadyAdded) {
+                                setFav(true);
+                                toast.warning(`${recipeDetail.name} has already been added to your favorites!`, {
+                                    position: "top-left",
+                                    autoClose: 2500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "dark",
+                                });
+                            }
+                            else {
+                                setFav(true);
+                                added.push(...previousAdded, recipeCard);
+                                localStorage.setItem("favorite", JSON.stringify(added));
+                                toast.success(`Added ${recipeDetail.name} to your favorites!`, {
+                                    position: "top-left",
+                                    autoClose: 2500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "dark",
+                                });
+                            }
                         }
-                        toast.success(`Added ${recipeDetail.name} to your favorites!`, {
-                            position: "top-left",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
+                        else {
+                            setFav(true);
+                            added.push(recipe);
+                            localStorage.setItem("favorite", JSON.stringify(added));
+                            toast.success(`Added ${recipeDetail.name} to your favorites!`, {
+                                position: "top-left",
+                                autoClose: 2500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                            });
+                        }                     
                     };
 
                     return (
@@ -37,10 +77,10 @@ const ChefRecipes = ({chefDetail}) => {
                                     <img style={{width: "100%", height: "400px"}} src={recipeDetail.img} />
                                 </div>
                                 <div className='p-3 d-flex justify-content-between'>
-                                    <Button disabled={fav} onClick={handleFav} className='d-flex btn-fav align-items-center gap-2' variant="dark">
-                                        <span>Add to Favourite</span> <FaHeart/>
+                                    <Button disabled={fav} onClick={() => handleFav(recipeDetail)} className='d-flex btn-fav align-items-center gap-2' variant="dark">
+                                        <span>Add to Favorite</span> <FaHeart/>
                                     </Button>
-                                    <div className='bg-dark btn-fav d-flex align-items-center gap-2 p-2 rounded-3'>
+                                    <div className='bg-dark btn-fav d-flex align-items-center gap-2 px-3 rounded-3'>
                                         <Rating
                                              className='text-warning' 
                                              placeholderRating={recipeDetail.rating}
@@ -73,9 +113,9 @@ const ChefRecipes = ({chefDetail}) => {
                                         <h5 className='fw-bold'>Cooking Method</h5>
                                         <ul>
                                             {
-                                                recipeDetail.method?.map(step => {
+                                                recipeDetail.method?.map((step, i) => {
                                                     return (
-                                                        <li style={{listStyle: "disc"}}>
+                                                        <li key={i} style={{listStyle: "disc"}}>
                                                             {step}
                                                         </li>
                                                     );

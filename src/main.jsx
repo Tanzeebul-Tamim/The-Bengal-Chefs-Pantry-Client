@@ -15,6 +15,9 @@ import AuthProvider from './authProvider/AuthProvider';
 import PrivateRoute from './privateRoute/PrivateRoute';
 import Blogs from './components/Blogs/Blogs';
 import Profile from './components/Profile/Profile';
+import About from './components/About/About';
+import Favorites from './components/Favorites/Favorites';
+import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 
 const router = createBrowserRouter([
   {
@@ -65,7 +68,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: "/favorites",
+        element: <PrivateRoute><Favorites></Favorites></PrivateRoute>
+      },
+      {
+        path: "/updateProfile",
+        element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
       }
     ]
   },

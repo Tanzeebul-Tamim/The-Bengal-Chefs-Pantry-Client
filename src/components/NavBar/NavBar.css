@@ -22,3 +22,15 @@
     font-family: 'Changa', sans-serif;
     font-size: 2.5ex;
 }
+
+#userPhoto {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #ffc107;
+    transition: border 0.3s ease-in-out;
+}
+
+#userPhoto:hover {
+    border: 4px solid #ffc107;
+}

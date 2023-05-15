@@ -43,7 +43,7 @@ const ChefSection = ({ chefsSection }) => {
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
-                    <strong>Years of Experience:</strong> <span className="text-danger">{chefCard.experience}</span> years</li>
+                    <strong>Years of Experience:</strong> <span className="text-danger">{chefCard.experience}</span>years</li>
                     <li className="list-group-item">
                     <strong>Numbers of Recipes:</strong> <span className="text-danger">{chefCard.recipes}</span></li>
                 </ul>

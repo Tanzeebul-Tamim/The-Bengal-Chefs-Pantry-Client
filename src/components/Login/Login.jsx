@@ -4,13 +4,22 @@ import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Button, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import app from "../../firebase/firebase.config";
+import { toast } from "react-toastify";
+import { useRef } from "react";
+
+const auth = getAuth(app);
 
 const Login = () => {
-  const { setLoading, googleSignIn, githubSignIn, signIn } = useContext(AuthContext);
+  const { setLoading, googleSignIn, githubSignIn, signIn, logOut  } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
+  const emailRef = useRef();
+  useTitle("Login -");
   
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -18,9 +27,11 @@ const Login = () => {
         const loggedUser = result.user;
         navigate(from, { replace: true });
         console.log(loggedUser);
+        setLoading(false);
       })
       .catch(error => {
         console.error(error);
+        setLoading(false);
       })
   }
 
@@ -30,9 +41,11 @@ const Login = () => {
         const loggedUser = result.user;
         navigate(from, { replace: true });
         console.log(loggedUser);
+        setLoading(false);
       })
       .catch(error => {
         console.error(error);
+        setLoading(false);
       })
   }  
 
@@ -45,16 +58,64 @@ const Login = () => {
     signIn(email, password)
         .then(result => {
             const createdUser = result.user;
+            if (!createdUser.emailVerified) {
+              logOut();
+              setError(`Please verify your email from the verification email sent to ${createdUser.email}`);
+              return;
+            }
             navigate(from, { replace: true });
             console.log(createdUser);
         })
         .catch(error => {
             console.error(error);
-            if(error) {
-                setError("Login failed! Enter your registered email and correct password.");
+            if(error.code === 'auth/wrong-password') {             
+              setError("Incorrect password!");
+              setLoading(false);
+            }
+            else if (error.code === 'auth/user-not-found') {
+                setError("User not found! Enter a verified email.");
                 setLoading(false);
             }
-        })
+            else if (error.code === 'auth/too-many-requests') {
+              setError("Too many unsuccessful attempts! Try again later.");
+              setLoading(false);
+            }
+
+        });
+  }
+
+  const handlePasswordReset = event => {
+    event.preventDefault();
+    const email = emailRef.current.value;
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success(`A password reset email has been sent to ${email}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+      });
+          event.target.newPassword.value = "";
+      }).catch(error => {
+        console.error(error);
+        if (error.code === "auth/missing-email") {
+          setError("Please enter your verified email first");
+          setLoading(false);
+        }
+        else if (error.code === 'auth/user-not-found') {
+          setError("User not found! Enter a verified email.");
+          setLoading(false);
+        }
+        else if (error.code === 'auth/too-many-requests') {
+          setError("Too many unsuccessful attempts! Try again later.");
+          setLoading(false);
+        }
+      });
   }
 
   const [showPassword, setShowPassword] = useState(false);
@@ -81,6 +142,7 @@ const Login = () => {
                 border: "none",
               }}
               required
+              ref={emailRef}
               placeholder="Enter your email address"
               type="email"
               name="email"
@@ -95,6 +157,7 @@ const Login = () => {
                 width: "558px",
                 border: "none",
               }}
+              autoComplete="off"
               required
               placeholder="Enter your password"
               type={showPassword ? "text" : "password"}
@@ -115,13 +178,21 @@ const Login = () => {
           </div>
 
           {
-                <p>
-                    <span className="text-danger">{error}</span>
-                </p>
+            <p>
+                <span className="text-danger">
+                  {error}
+                </span>
+            </p>
           }
 
+          <span>
+            <Button variant="link" onClick={handlePasswordReset} style={{textDecoration: "none", color: "#dc3545"}}>
+              <strong>Forgot Password?</strong>
+            </Button>
+          </span>
+          
          <div className="mb-2">
-            <Button style={{width: "558px", height: "55px"}} type="submit" variant="danger" className="fs-5 mt-3 py-2">Submit</Button> 
+            <Button style={{width: "558px", height: "55px"}} type="submit" variant="danger" className="fs-5 py-2">Submit</Button> 
          </div>    
           <p>
             Don't have an account? Please{" "}

@@ -1,21 +1,19 @@
 import React from "react";
 import "./Footer.css";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import LeafletMap from "../LeafletMap/LeafletMap";
+
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer style={{fontFamily: "changa"}} className="footer">
       <div className="px-5">
         <div className="row gx-5">
           <div className="col-md-3">
-            <h3>About Us</h3>
-            <p>
-              We are
-              passionate about bringing you the best Bengali recipes. Our team of dedicated food lovers work tirelessly to
-              curate the most authentic and delicious recipes from our partner
-              chefs. Join us on this culinary journey and discover the
-              beauty and flavor of global cuisine.
-            </p>
+            <h3>Our Location</h3>
+            <div className="border border-3 border-warning">
+              <LeafletMap />
+            </div>
           </div>
           <div className="col-md-3">
             <h3>Opening Hours</h3>
@@ -34,7 +32,10 @@ const Footer = () => {
               <br />
               Phone: 123-456-7890
               <br />
-              Email: <a id="email" href="">info@bengal-chefs-pantry.com</a>
+              Email:{" "}
+              <a id="email" href="">
+                info@bengal-chefs-pantry.com
+              </a>
             </p>
           </div>
           <div className="col-md-3">
@@ -55,7 +56,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className="text-white" />
+        <hr className="text-white mt-5" />
         <div className="row">
           <div className="col-md-12 text-center">
             <p>
