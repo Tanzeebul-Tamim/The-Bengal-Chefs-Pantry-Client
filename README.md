@@ -21,7 +21,7 @@ Welcome to the client-side repository of The Bengal Chefs' Pantry website, a ded
 
 <br/>
 
-- ***Dynamic Home Page:*** The homepage features a banner containing top rated dishes, a scrolling ticker containing fun facts, top chefs section containing chefs' name, years of experience, number of recipes, likes and a button that redirects to a page allocated for their detailed recipes, a section called "expert chef tips and tricks" which includes a slider with tips and tricks related images and finally a section regarding healthy eating tips.
+- ***Dynamic Home Page:*** The homepage features a banner containing 6 top rated dishes, a scrolling ticker containing fun facts, top chefs section containing chefs' name, years of experience, number of recipes, likes and a button that redirects to a page allocated for their detailed recipes, a section called "expert chef tips and tricks" which includes a slider with tips and tricks related images and finally a section regarding healthy eating tips.
 <p align="center">
    <img src="public/dynamic-homepage.png" width="550" alt="Home 1"/>
 </p>
