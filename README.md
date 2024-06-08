@@ -11,6 +11,7 @@ Welcome to the client-side repository of The Bengal Chefs' Pantry website, a ded
 - [Running the Project](#running-the-project)
 - [Also Checkout The Bengal Chefs' Pantry - Server](#also-checkout-the-bengal-chefs-pantry-server)
 - [Contributing](#contributing)
+- [License](#license)
 
 ## Website Features
 
