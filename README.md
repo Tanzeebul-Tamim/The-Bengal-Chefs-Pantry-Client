@@ -1,4 +1,4 @@
-# The Bengal Chefs' Pantry - Client Side
+# <img src="./public/icon.png" alt="Logo" width="70"/> The Bengal Chefs' Pantry - Client Side
 
 Welcome to the client-side repository of The Bengal Chefs' Pantry website, a dedicated website showcasing the finest recipes from the best chefs.
 
